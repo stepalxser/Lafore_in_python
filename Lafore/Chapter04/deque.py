@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+
 # Chapter04 programming project 4.2
 class Deque:
     def __init__(self, size: int) -> None:
@@ -61,6 +62,20 @@ class Deque:
         return result
 
 
+# Chapter04 programming project 4.3
+class Stack(Deque):
+    def push(self, value: int) -> None:
+        self.insert_left(value)
+
+    def pop(self) -> int:
+        return self.remove_left()
+
+    def peek(self) -> int:
+        result = self.remove_left()
+        self.insert_left(result)
+        return result
+
+
 if __name__ == '__main__':
     deque = Deque(10)
     for item in range(10):
@@ -95,4 +110,11 @@ if __name__ == '__main__':
     deque.remove_left()
     print(deque)
 
+    stack = Stack(10)
+    for value in range(20, 220, 20):
+        stack.push(value)
 
+    print(stack)
+
+    while not stack.is_empty:
+        print(stack.pop())

@@ -54,6 +54,7 @@ class Queue:
             print(*self._state[0:self._rear_pointer], sep=' ')
 
 
+# Chapter04 programming project 4.4
 class PriorityQueue:
     def __init__(self, size: int) -> None:
         self._size = size
@@ -96,6 +97,47 @@ class PriorityQueue:
         return self._state[self._elem_counter]
 
 
+class FastQueue:
+    def __init__(self, size: int) -> None:
+        self._size = size
+        self._state: List[Optional[int]] = [None for _ in range(size)]
+        self._elem_counter = 0
+
+    def __str__(self) -> str:
+        return str(self._state)
+
+    @property
+    def is_empty(self) -> bool:
+        return not self._elem_counter
+
+    @property
+    def is_full(self) -> bool:
+        return self._elem_counter == self._size
+
+    def insert(self, value) -> None:
+        self._state[self._elem_counter] = value
+        self._elem_counter += 1
+
+    def remove(self) -> int:
+        remove_index, min_elem = 0, float('+inf')
+        for index in range(self._elem_counter):
+            if self._state[index] > min_elem:
+                remove_index = index
+        result = self._state[remove_index]
+        self._state[remove_index] = None
+        for index in range(remove_index+1, self._elem_counter):
+            self._state[index], self._state[index-1] = self._state[index-1], self._state[index]
+        self._elem_counter -= 1
+        return result
+
+    def peek(self) -> int:
+        remove_index, min_elem = 0, float('+inf')
+        for index in range(self._elem_counter):
+            if self._state[index] > min_elem:
+                remove_index = index
+        return self._state[remove_index]
+
+
 if __name__ == '__main__':
     queue = Queue(10)
     for item in range(10):
@@ -109,3 +151,12 @@ if __name__ == '__main__':
     for item in range(10, 15):
         queue.insert(item)
     queue.display()
+
+    fast_queue = FastQueue(10)
+    for item in range(1, 11):
+        fast_queue.insert(item)
+    print(fast_queue)
+    fast_queue.remove()
+    fast_queue.remove()
+    fast_queue.remove()
+    print(fast_queue)
