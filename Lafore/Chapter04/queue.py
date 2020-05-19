@@ -45,6 +45,14 @@ class Queue:
     def is_full(self) -> bool:
         return self._elem_counter == self._size
 
+    # chapter04 programming project 4.1
+    def display(self) -> None:
+        if self._rear_pointer > self._front_pointer:
+            print(*self._state[self._front_pointer:self._rear_pointer], sep=' ')
+        else:
+            print(*self._state[self._front_pointer:], sep=' ', end=' ')
+            print(*self._state[0:self._rear_pointer], sep=' ')
+
 
 class PriorityQueue:
     def __init__(self, size: int) -> None:
@@ -89,28 +97,15 @@ class PriorityQueue:
 
 
 if __name__ == '__main__':
-    # queue = Queue(10)
-    # for value in range(10, 110, 10):
-    #     queue.insert(value)
-    # print(queue)
-    # for _ in range(5):
-    #     print(queue.remove())
-    # print(queue)
-    #
-    # for value in range(3):
-    #     queue.insert(value)
-    #
-    # print(queue)
-    # for _ in range(6):
-    #     print(queue.remove())
-    # print(queue)
+    queue = Queue(10)
+    for item in range(10):
+        queue.insert(item)
+    queue.display()
 
-    pqueue = PriorityQueue(10)
-    for value in range(10):
-        pqueue.insert(value)
-    print(pqueue)
+    for _ in range(5):
+        queue.remove()
+    queue.display()
 
-    while not pqueue.is_empty:
-        print(pqueue.remove())
-
-    print(pqueue)
+    for item in range(10, 15):
+        queue.insert(item)
+    queue.display()
