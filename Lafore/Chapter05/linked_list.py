@@ -78,13 +78,14 @@ class TwoWayLinkedList:
         new_link = Link(key)
         if self.is_empty:
             self.first = new_link
+            self.last = new_link
         self.last.next = new_link
         self.last = new_link
 
     def delete_fisrt(self) -> Any:
-        result = self.first.data
-        self.last = None if self.first.next is None else self.last
-        self.first = self.first.next
+        result = self.first
+        self.last = None if self.first is None else self.last
+        self.first = None if self.first is None else self.first.next
         return result
 
     @property
@@ -109,11 +110,10 @@ if __name__ == '__main__':
 
     linked_list = TwoWayLinkedList()
     for value in range(10, 60, 10):
-        linked_list.insert_first(value)
-    print(linked_list)
-
-    for value in range(10, 60, 10):
         linked_list.insert_last(value)
+    print(linked_list)
+    for value in range(10, 60, 10):
+        linked_list.insert_first(value)
     print(linked_list)
 
     for _ in range(5):
