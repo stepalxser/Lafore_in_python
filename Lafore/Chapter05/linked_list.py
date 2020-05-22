@@ -1,4 +1,4 @@
-from typing import List, Any, Optional
+from typing import Any, Optional
 
 
 class Link:
@@ -143,32 +143,32 @@ class SortedList:
 
 
 if __name__ == '__main__':
-    # linked_list = LinkedList()
-    # for value in range(10, 60, 10):
-    #     linked_list.insert_first(value)
-    # print(linked_list)
-    #
-    # linked_list.delete_first()
-    # print(linked_list)
-    #
-    # print(linked_list.find(20))
-    #
-    # linked_list.delete(20)
-    # print(linked_list)
-    # print()
-    #
-    #
-    # linked_list = TwoWayLinkedList()
-    # for value in range(10, 60, 10):
-    #     linked_list.insert_last(value)
-    # print(linked_list)
-    # for value in range(10, 60, 10):
-    #     linked_list.insert_first(value)
-    # print(linked_list)
-    #
-    # for _ in range(5):
-    #     print(linked_list.delete_fisrt())
-    # print(linked_list)
+    linked_list = LinkedList()
+    for value in range(10, 60, 10):
+        linked_list.insert_first(value)
+    print(linked_list)
+
+    linked_list.delete_first()
+    print(linked_list)
+
+    print(linked_list.find(20))
+
+    linked_list.delete(20)
+    print(linked_list)
+    print()
+
+
+    linked_list = TwoWayLinkedList()
+    for value in range(10, 60, 10):
+        linked_list.insert_last(value)
+    print(linked_list)
+    for value in range(10, 60, 10):
+        linked_list.insert_first(value)
+    print(linked_list)
+
+    for _ in range(5):
+        print(linked_list.delete_fisrt())
+    print(linked_list)
 
 
     sorted_list = SortedList()
