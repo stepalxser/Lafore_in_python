@@ -15,7 +15,7 @@ class DoublyLinked:
     def __init__(self) -> None:
         self.first: Optional[DoubleLink] = None
         self.last: Optional[DoubleLink] = None
-        self.pointer = self.first
+        self._pointer: Optional[DoubleLink] = None
 
     def __str__(self) -> str:
         display_array, current = [], self.first
@@ -25,10 +25,16 @@ class DoublyLinked:
         return ' '.join(str(item) for item in display_array)
 
     def __iter__(self):
-        current = self.first
-        while current is not None:
-            yield current
-            current = current.next
+        self._pointer = self.first
+        return self
+
+    def __next__(self):
+        if self._pointer is not None:
+            result = self._pointer
+            self._pointer = self._pointer.next
+            return result
+        else:
+            raise StopIteration
 
     @property
     def is_empty(self) -> bool:

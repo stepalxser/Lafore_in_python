@@ -82,7 +82,7 @@ class TwoWayLinkedList:
         self.last.next = new_link
         self.last = new_link
 
-    def delete_fisrt(self) -> Any:
+    def delete_first(self) -> Any:
         result = self.first
         self.last = None if self.first is None else self.last
         self.first = None if self.first is None else self.first.next
