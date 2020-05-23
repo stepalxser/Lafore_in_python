@@ -75,17 +75,16 @@ class PriorityQueue:
     def insert(self, value) -> None:
         if self._elem_counter == 0:
             self._state[self._elem_counter] = value
-            self._elem_counter += 1
         else:
             insert_index = 0
             for index in range(self._elem_counter-1, -1, -1):
                 if value > self._state[index]:
                     self._state[index+1] = self._state[index]
                 else:
-                    insert_index = index
+                    insert_index = index + 1
                     break
             self._state[insert_index] = value
-            self._elem_counter += 1
+        self._elem_counter += 1
 
     def remove(self) -> int:
         result = self._state[self._elem_counter-1]
@@ -160,3 +159,11 @@ if __name__ == '__main__':
     fast_queue.remove()
     fast_queue.remove()
     print(fast_queue)
+
+    priority_queue = PriorityQueue(10)
+    for item in range(100, 0, -10):
+        priority_queue.insert(item)
+    print(priority_queue)
+    for _ in range(5):
+        print(priority_queue.remove())
+    print(priority_queue)

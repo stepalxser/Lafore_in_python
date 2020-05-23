@@ -126,16 +126,10 @@ class SortedList:
             current = current.next
         return None
 
-    def delete(self, key: Any) -> Optional[Link]:
-        current = self.first
-        previous = self.first
-        while current is not None:
-            if current.data == key:
-                previous.next = current.next
-                return current
-            previous = current
-            current = current.next
-        return None
+    def delete(self) -> Optional[Link]:
+        result = self.first
+        self.first = self.first.next
+        return result
 
     @property
     def is_empty(self):
@@ -143,6 +137,7 @@ class SortedList:
 
 
 if __name__ == '__main__':
+    print('LinkedList tests')
     linked_list = LinkedList()
     for value in range(10, 60, 10):
         linked_list.insert_first(value)
@@ -154,10 +149,9 @@ if __name__ == '__main__':
     print(linked_list.find(20))
 
     linked_list.delete(20)
-    print(linked_list)
-    print()
+    print(linked_list, end='\n\n')
 
-
+    print('TwoWayLinkedList tests')
     linked_list = TwoWayLinkedList()
     for value in range(10, 60, 10):
         linked_list.insert_last(value)
@@ -167,10 +161,10 @@ if __name__ == '__main__':
     print(linked_list)
 
     for _ in range(5):
-        print(linked_list.delete_fisrt())
-    print(linked_list)
+        print(linked_list.delete_first())
+    print(linked_list, end='\n\n')
 
-
+    print('SortedList tests')
     sorted_list = SortedList()
     for value in range(10, 110, 10):
         sorted_list.insert(value)
@@ -178,4 +172,8 @@ if __name__ == '__main__':
 
     for value in range(5, 105, 10):
         sorted_list.insert(value)
+    print(sorted_list)
+
+    for _ in range(10):
+        print(sorted_list.delete())
     print(sorted_list)

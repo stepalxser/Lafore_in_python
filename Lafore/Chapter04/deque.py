@@ -77,6 +77,7 @@ class Stack(Deque):
 
 
 if __name__ == '__main__':
+    print('Deque tests')
     deque = Deque(10)
     for item in range(10):
         deque.insert_right(item)
@@ -108,8 +109,9 @@ if __name__ == '__main__':
     deque.remove_left()
     deque.remove_left()
     deque.remove_left()
-    print(deque)
+    print(deque, end='\n\n')
 
+    print('Stack tests')
     stack = Stack(10)
     for value in range(20, 220, 20):
         stack.push(value)

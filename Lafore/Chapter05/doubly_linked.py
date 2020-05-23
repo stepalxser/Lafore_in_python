@@ -22,7 +22,7 @@ class DoublyLinked:
         while current is not None:
             display_array.append(current)
             current = current.next
-        return ' '.join(str(item) for item in display_array)
+        return ' '.join(str(elem) for elem in display_array)
 
     def __iter__(self):
         self._pointer = self.first
@@ -125,27 +125,27 @@ class DoublyLinked:
 
 
 if __name__ == '__main__':
-    data = DoublyLinked()
-    data.insert_first(22)
-    data.insert_first(44)
-    data.insert_first(66)
-    print(data)
+    doubly_linked = DoublyLinked()
+    doubly_linked.insert_first(22)
+    doubly_linked.insert_first(44)
+    doubly_linked.insert_first(66)
+    print(doubly_linked)
 
-    data.insert_last(11)
-    data.insert_last(33)
-    data.insert_last(55)
-    print(data)
+    doubly_linked.insert_last(11)
+    doubly_linked.insert_last(33)
+    doubly_linked.insert_last(55)
+    print(doubly_linked)
 
-    data.delete_first()
-    data.delete_last()
-    data.delete(11)
-    print(data)
+    doubly_linked.delete_first()
+    doubly_linked.delete_last()
+    doubly_linked.delete(11)
+    print(doubly_linked)
 
-    data.insert_after(22, 77)
-    data.insert_after(33, 88)
-    print(data)
+    doubly_linked.insert_after(22, 77)
+    doubly_linked.insert_after(33, 88)
+    print(doubly_linked)
 
-    for item in data:
+    for item in doubly_linked:
         print(item)
-    for item in data:
+    for item in doubly_linked:
         print(item)
