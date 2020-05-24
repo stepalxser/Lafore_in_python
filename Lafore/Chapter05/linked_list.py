@@ -136,6 +136,82 @@ class SortedList:
         return True if self.first is None else False
 
 
+# programming project 5.3
+class LoopList:
+    def __init__(self):
+        self.current: Optional[Link] = None
+
+    def __str__(self) -> str:
+        display_array, current = [], self.current
+        while current is not None and current.next is not self.current:
+            display_array.append(current)
+            current = current.next
+        display_array.append(current)
+        return ' '.join(str(item) for item in display_array)
+
+    def insert(self, link_data: Any) -> None:
+        new_link = Link(link_data)
+        if self.current is None:
+            self.current = new_link
+            new_link.next = new_link
+            return
+
+        current = self.current
+        while current.next is not self.current:
+            current = current.next
+        current.next = new_link
+        new_link.next = self.current
+        self.current = new_link
+
+    def find(self, key) -> Optional[Link]:
+        current = self.current
+        while current.next is not self.current:
+            if current.data == key:
+                return current
+            current = current.next
+        if current.data == key:
+            return current
+        return None
+
+    def delete_key(self, key) -> Optional[Link]:
+        current = self.current
+        previous = self.current
+        while previous.next is not current:
+            previous = previous.next
+        while current.next is not self.current:
+            if current.data == key:
+                self.current = current.next
+                previous.next = current.next
+                return current
+            previous = current
+            current = current.next
+        if current.data == key:
+            self.current = current.next
+            previous.next = current.next
+            return current
+        return None
+
+    def delete(self) -> Optional[Link]:
+        if self.current is self.current.next:
+            result = self.current
+            self.current = None
+            return result
+        previous = self.current
+        while previous.next is not self.current:
+            previous = previous.next
+        previous.next = self.current.next
+        result = self.current
+        self.current = self.current.next
+        return result
+
+    def step(self) -> None:
+        self.current = self.current.next
+
+    @property
+    def is_empty(self):
+        return self.current is None
+
+
 if __name__ == '__main__':
     print('LinkedList tests')
     linked_list = LinkedList()
@@ -176,4 +252,30 @@ if __name__ == '__main__':
 
     for _ in range(10):
         print(sorted_list.delete())
-    print(sorted_list)
+    print(sorted_list, end='\n\n')
+
+    print('LoopList tests')
+    loop_list = LoopList()
+    for value in range(10):
+        loop_list.insert(value)
+    print(loop_list)
+
+    for value in range(10, 60, 10):
+        loop_list.insert(value)
+    print(loop_list)
+    print(loop_list.find(50))
+    print(loop_list.find(0))
+    print(loop_list.find(10))
+    print(loop_list.find(54))
+    print(loop_list)
+
+    print(loop_list.delete())
+    print(loop_list.delete())
+    print(loop_list.delete())
+    print(loop_list.delete())
+    print(loop_list)
+
+    print(loop_list.step())
+    print(loop_list.step())
+    print(loop_list.step())
+    print(loop_list)

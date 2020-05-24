@@ -1,6 +1,6 @@
 from typing import Any
 
-from Lafore.Chapter05.linked_list import TwoWayLinkedList, LinkedList, SortedList
+from Lafore.Chapter05.linked_list import TwoWayLinkedList, LinkedList, SortedList, LoopList
 from Lafore.Chapter05.doubly_linked import DoublyLinked
 
 
@@ -99,6 +99,29 @@ class Deque:
         return self._state.delete_first()
 
 
+# programming project 5.4
+class LoopStack:
+    def __init__(self) -> None:
+        self._state = LoopList()
+
+    def __str__(self) -> str:
+        return str(self._state)
+
+    def push(self, value: Any) -> None:
+        self._state.insert(value)
+
+    def pop(self) -> Any:
+        result = self._state.delete()
+        return result.data
+
+    def peek(self) -> Any:
+        return self._state.current.data
+
+    @property
+    def is_empty(self) -> bool:
+        return self._state.is_empty
+
+
 if __name__ == '__main__':
     print('Stack tests')
     stack = Stack()
@@ -160,3 +183,12 @@ if __name__ == '__main__':
     deque.remove_left()
     deque.remove_left()
     print(deque, end='\n\n')
+
+    print('LoopStack tests')
+    loop_stack = LoopStack()
+    for item in range(10, 110, 10):
+        loop_stack.push(item)
+    print(loop_stack)
+    while not loop_stack.is_empty:
+        print(loop_stack.pop())
+    print(loop_stack, end='\n\n')
