@@ -122,73 +122,100 @@ class LoopStack:
         return self._state.is_empty
 
 
+# programming project 5.5
+class Flavius:
+    def __init__(self, counter: int, start: int, step: int) -> None:
+        self._state = LoopList()
+        self.step = step
+
+        for person_index in range(counter, 0, -1):
+            self._state.insert(person_index)
+        while self._state.current.data != start:
+            self._state.step()
+
+    def __call__(self):
+        while self._state.current.next is not self._state.current:
+            for _ in range(self.step):
+                self._state.step()
+            self._state.delete()
+        return str(self._state)
+
+
 if __name__ == '__main__':
-    print('Stack tests')
-    stack = Stack()
-    for item in range(10, 110, 10):
-        stack.push(item)
-    print(stack)
-    while not stack.is_empty:
-        print(stack.pop())
-    print(stack, end='\n\n')
+    # print('Stack tests')
+    # stack = Stack()
+    # for item in range(10, 110, 10):
+    #     stack.push(item)
+    # print(stack)
+    # while not stack.is_empty:
+    #     print(stack.pop())
+    # print(stack, end='\n\n')
+    #
+    # print('Queue tests')
+    # queue = Queue()
+    # for item in range(10, 110, 10):
+    #     queue.insert(item)
+    # print(queue.peek())
+    # print(queue)
+    # while not queue.is_empty:
+    #     print(queue.remove())
+    # print(queue, end='\n\n')
+    #
+    # print('PriorityQueue tests')
+    # priority_queue = PriorityQueue()
+    # for item in range(100, 0, -10):
+    #     priority_queue.insert(item)
+    # print(priority_queue)
+    # for _ in range(5):
+    #     print(priority_queue.remove())
+    # print(priority_queue, end='\n\n')
+    #
+    # print('Deque tests')
+    # deque = Deque()
+    # for item in range(10):
+    #     deque.insert_right(item)
+    # print(deque)
+    #
+    # deque.remove_left()
+    # deque.remove_right()
+    # print(deque)
+    #
+    # deque.remove_left()
+    # deque.remove_right()
+    # print(deque)
+    # deque.insert_right(10)
+    # deque.insert_right(20)
+    # deque.insert_right(30)
+    # print(deque)
+    #
+    # deque.remove_right()
+    # deque.remove_right()
+    # deque.remove_right()
+    # print(deque)
+    #
+    # deque.insert_left(-10)
+    # deque.insert_left(-20)
+    # deque.insert_left(-30)
+    # print(deque)
+    #
+    # deque.remove_left()
+    # deque.remove_left()
+    # deque.remove_left()
+    # print(deque, end='\n\n')
+    #
+    # print('LoopStack tests')
+    # loop_stack = LoopStack()
+    # for item in range(10, 110, 10):
+    #     loop_stack.push(item)
+    # print(loop_stack)
+    # while not loop_stack.is_empty:
+    #     print(loop_stack.pop())
+    # print(loop_stack, end='\n\n')
 
-    print('Queue tests')
-    queue = Queue()
-    for item in range(10, 110, 10):
-        queue.insert(item)
-    print(queue.peek())
-    print(queue)
-    while not queue.is_empty:
-        print(queue.remove())
-    print(queue, end='\n\n')
+    print('Flavius tests')
+    for value in range(1, 20):
+        flavius = Flavius(20, 1, value)
+        result = int(flavius())
+        if result == 7:
+            print(value)
 
-    print('PriorityQueue tests')
-    priority_queue = PriorityQueue()
-    for item in range(100, 0, -10):
-        priority_queue.insert(item)
-    print(priority_queue)
-    for _ in range(5):
-        print(priority_queue.remove())
-    print(priority_queue, end='\n\n')
-
-    print('Deque tests')
-    deque = Deque()
-    for item in range(10):
-        deque.insert_right(item)
-    print(deque)
-
-    deque.remove_left()
-    deque.remove_right()
-    print(deque)
-
-    deque.remove_left()
-    deque.remove_right()
-    print(deque)
-    deque.insert_right(10)
-    deque.insert_right(20)
-    deque.insert_right(30)
-    print(deque)
-
-    deque.remove_right()
-    deque.remove_right()
-    deque.remove_right()
-    print(deque)
-
-    deque.insert_left(-10)
-    deque.insert_left(-20)
-    deque.insert_left(-30)
-    print(deque)
-
-    deque.remove_left()
-    deque.remove_left()
-    deque.remove_left()
-    print(deque, end='\n\n')
-
-    print('LoopStack tests')
-    loop_stack = LoopStack()
-    for item in range(10, 110, 10):
-        loop_stack.push(item)
-    print(loop_stack)
-    while not loop_stack.is_empty:
-        print(loop_stack.pop())
-    print(loop_stack, end='\n\n')

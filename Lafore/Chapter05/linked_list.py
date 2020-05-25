@@ -11,8 +11,8 @@ class Link:
 
 
 class LinkedList:
-    def __init__(self, first=None):
-        self.first: Optional[Link] = first
+    def __init__(self):
+        self.first: Optional[Link] = None
 
     def __str__(self) -> str:
         display_array, current = [], self.first
