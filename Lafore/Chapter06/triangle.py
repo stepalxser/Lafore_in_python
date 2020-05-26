@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 def triange(n: int) -> int:
     if n == 1:
         return n
@@ -15,11 +12,34 @@ def factorial(n: int) -> int:
         return factorial(n-1) * n
 
 
-if __name__ == '__main__':
-    # print(triange(int(input('Print a number for triangle: '))))
-    #
-    # print(factorial(int(input('Print a number for factorial: '))))
+# programming project 5.1
+def mult(a:int ,b: int) -> int:
+    if b == 1:
+        return a
+    else:
+        return mult(a, b-1) + a
 
-    fo
+
+# programming project 5.2
+def print_binary_tree(left: int = 0, right: int = 16) -> None:
+    pass
+
+
+# programming project 5.3
+def power(a: int, b: int):
+    if b == 1:
+        return a
+    else:
+        return power(a*a, b//2)
+
+
+if __name__ == '__main__':
+    print(triange(int(input('Print a number for triangle: '))))
+
+    print(factorial(int(input('Print a number for factorial: '))))
+
+    print(mult(9, 6))
+
+    print(power(3, 18))
 
 
