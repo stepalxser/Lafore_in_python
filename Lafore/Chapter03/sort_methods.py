@@ -104,11 +104,6 @@ if __name__ == '__main__':
     data.odd_even_sort()
     assert str(data) == str(sorted(data._state))
 
-    # Chapter 3 programming project 4
-    data._state = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-    data.odd_even_sort()
-    assert str(data) == str(sorted(data._state))
-
     # Chapter 3 programming project 5
     data._state = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     print(data.insertion_sort_with_counter())
