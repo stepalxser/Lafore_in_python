@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from Lafore.Chapter05.linked_list import LinkedList
-
+from Lafore.Chapter08.binary_tree import Tree
 
 class HashChainTable:
     def __init__(self, size: int = 8) -> None:
@@ -30,6 +30,15 @@ class HashChainTable:
         result = self._hash_array[hash_index].find(item)
         return result if result is None else result.data
 
+class HashTreeTable:
+    def __init__(self, size: int = 8) -> None:
+        self._size = size
+        self._hash_array: List[Tree] = [Tree() for _ in range(size)]
+
+    def hash_func(self, key: int) -> int:
+        return key % self._size
+
+    
 
 if __name__ == "__main__":
     data = HashChainTable(10)
