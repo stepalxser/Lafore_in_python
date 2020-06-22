@@ -30,6 +30,7 @@ class HashChainTable:
         result = self._hash_array[hash_index].find(item)
         return result if result is None else result.data
 
+# programming projects 11.5
 class HashTreeTable:
     def __init__(self, size: int = 8) -> None:
         self._size = size
@@ -38,6 +39,17 @@ class HashTreeTable:
     def hash_func(self, key: int) -> int:
         return key % self._size
 
+    def insert(self, key):
+        key_index = self.hash_func(key)
+        self._hash_array[key_index].insert(key)
+
+    def find(self, key):
+        key_index = self.hash_func(key)
+        return self._hash_array[key_index].find(key)
+
+    def delete(self, key):
+        key_index = self.hash_func(key)
+        return self._hash_array[key_index].delete(key)
     
 
 if __name__ == "__main__":
