@@ -29,13 +29,15 @@ class Heap:
         self._trickle_up(len(self._heap_array) - 1)
 
     def remove(self) -> Optional[Node]:
-        try:
+        if len(self._heap_array) > 1:
             root = self._heap_array[0]
-        except IndexError:
+            self._heap_array[0] = self._heap_array.pop()
+            self._trickle_down(0)
+            return root
+        elif len(self._heap_array) == 1:
+            return self._heap_array.pop()
+        else:
             return None
-        self._heap_array[0] = self._heap_array.pop()
-        self._trickle_down(0)
-        return root
 
     def _trickle_up(self, index: int) -> None:
         parent = (index - 1) // 2
@@ -90,15 +92,65 @@ class Heap:
             level += 1
         print('*' * 64)
 
+    def heap_sort(self) -> None:
+        result = []
+        for _ in self._heap_array.copy():
+            result.append(self.remove())
+        self._heap_array = result
+
+    # programming project 12.2
+    def toss(self, key: int) -> None:
+        self._heap_array.append(Node(key))
+
+    # programming project 12.2
+    def restore_heap(self) -> None:
+        for index in range(len(self._heap_array)-1, 0, -1):
+            self._trickle_up(index)
+
+
+# programming project 12.3
+class PriorityQueue:
+    def __init__(self):
+        self._state: Heap = Heap()
+
+    def insert(self, value) -> None:
+        self._state.insert(value)
+
+    def remove(self) -> Optional[int]:
+        return self._state.remove().key
+
+    def peek(self) -> Optional[int]:
+        result = self._state.remove()
+        self.insert(result)
+        return result
+
 
 if __name__ == '__main__':
     data = Heap()
     for item in [70, 40, 50, 20, 60, 100, 80, 30, 10, 90]:
         data.insert(item)
-        data.display()
-        print(*data._heap_array)
+    data.display()
+    print(*data._heap_array)
 
+    print('heap insert')
     data.insert(53)
     data.display()
+
+    print('heap remove')
     print(data.remove())
     data.display()
+
+    print('heap sort')
+    data.heap_sort()
+    data.display()
+
+    print('heap toss')
+    for item in range (110, 160, 10):
+        data.toss(item)
+    data.display()
+    print(*data._heap_array)
+
+    print('heap restore')
+    data.restore_heap()
+    data.display()
+
